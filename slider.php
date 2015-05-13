@@ -2,7 +2,7 @@
 /**
  * Advanced Ads Slider
  *
- * Plugin Name:       Advanced Ads Slider
+ * Plugin Name:       Advanced Ads – Slider
  * Plugin URI:        http://wpadvancedads.com/add-ons/slider/
  * Description:       Create a slider from your ads.
  * Version:           1.0.0

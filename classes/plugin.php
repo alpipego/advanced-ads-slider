@@ -57,7 +57,6 @@ class Advanced_Ads_Slider_Plugin {
                 return ;
             }
 
-            add_action( 'admin_init', array($this, 'plugin_updater'), 1);
             $this->options_slug =  ADVADS_SLUG . '-slider';
 	}
 
