@@ -31,6 +31,10 @@ class Advanced_Ads_Slider_Plugin {
 
 	private function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'wp_plugins_loaded' ) );
+		// add group type
+		add_filter( 'advanced-ads-group-types', array( $this, 'add_group_type' ) );
+
+
 	}
 
 	/**
@@ -69,5 +73,20 @@ class Advanced_Ads_Slider_Plugin {
 
             return Advanced_Ads::get_instance()->options();
         }
+
+	/**
+	 * add slider group type
+	 *
+	 * @param arr $group_types existing group types
+	 * @return arr $group_types group types with the new slider group
+	 */
+	public function add_group_type( array $group_types ){
+
+	    $group_types['slider'] = array(
+		    'title' => __( 'Ad Slider', AAS_SLUG ),
+		    'description' => __( 'Display all ads as a slider', AAS_SLUG ),
+	    );
+	    return $group_types;
+	}
 }
 

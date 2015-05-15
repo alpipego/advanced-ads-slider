@@ -23,8 +23,7 @@ class Advanced_Ads_Slider {
                 // add js file to header
                 add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
 
-		// add group type
-		add_filter( 'advanced-ads-group-types', array( $this, 'add_group' ) );
+		add_filter( 'advanced-ads-group-output-ad-ids', array( $this, 'output_ad_ids' ), 10, 4 );
         }
 
 	/**
@@ -39,17 +38,22 @@ class Advanced_Ads_Slider {
 	}
 
 	/**
-	 * add slider group type
+	 * get ids from ads in the order they should be displayed
 	 *
-	 * @param arr $group_types existing group types
-	 * @return arr $group_types group types with the new slider group
+	 * @param arr $ordered_ad_ids ad ids in the order from the main plugin
+	 * @param str $type group type
+	 * @param arr $ads array with ad objects
+	 * @param arr $weights array with ad weights
+	 * @return arr $ad_ids
 	 */
-	public function add_group( array $group_types ){
+	public function output_ad_ids( $ordered_ad_ids, $type, $ads, $weights ){
 
-	    $group_types['slider'] = array(
-		    'title' => __( 'Ad Slider', AAS_SLUG ),
-		    'description' => __( 'Display all ads as a slider', AAS_SLUG ),
-	    );
-	    return $group_types;
+	    // return order by weights if this is a slider
+	    if( $type === 'slider' ){
+		return array_keys($weights);
+	    }
+
+	    // return default
+	    return $ordered_ad_ids;
 	}
 }

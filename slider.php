@@ -25,27 +25,21 @@ define('AAS_BASE_PATH', plugin_dir_path(__FILE__));
 define('AAS_BASE_URL', plugin_dir_url(__FILE__));
 
 // plugin slug and textdoamin
-define('AAS_SLUG', 'responsive-ads');
+define('AAS_SLUG', 'slider-ads');
 
 define( 'AAS_VERSION', '1.0.0' );
 define( 'AAS_PLUGIN_URL', 'https://wpadvancedads.com' );
 define( 'AAS_PLUGIN_NAME', 'Ad Slider' );
 
-/*----------------------------------------------------------------------------*
- * Public-Facing Functionality
- *----------------------------------------------------------------------------*/
 
 include_once( plugin_dir_path( __FILE__ ) . 'classes/plugin.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'public/public.php' );
-    new Advanced_Ads_Slider();
-
-/*----------------------------------------------------------------------------*
- * Dashboard and Administrative Functionality
- *----------------------------------------------------------------------------*/
 
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
     include_once( plugin_dir_path( __FILE__ ) . 'admin/admin.php' );
     new Advanced_Ads_Slider_Admin();
+} else {
+    include_once( plugin_dir_path( __FILE__ ) . 'public/public.php' );
+    new Advanced_Ads_Slider();
 }
 
 }
