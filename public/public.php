@@ -24,6 +24,8 @@ class Advanced_Ads_Slider {
                 add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
 
 		add_filter( 'advanced-ads-group-output-ad-ids', array( $this, 'output_ad_ids' ), 10, 4 );
+
+		add_filter( 'advanced-ads-group-output-array', array( $this, 'output_slider_markup'), 10, 2 );
         }
 
 	/**
@@ -33,8 +35,7 @@ class Advanced_Ads_Slider {
 	 */
 	public function register_scripts(){
 		// include file only if js method is enabled
-		wp_enqueue_script( 'advads-slider-js', AAS_BASE_URL . 'public/assets/js/script.js', array(), AAS_VERSION );
-		wp_enqueue_style( 'advads-slider-css', AAS_BASE_URL . 'public/assets/css/styles.css', array(), AAS_VERSION );
+		wp_enqueue_script( 'unslider-js', AAS_BASE_URL . 'public/assets/js/unslider.min.js', array('jquery'), AAS_VERSION );
 	}
 
 	/**
@@ -55,5 +56,40 @@ class Advanced_Ads_Slider {
 
 	    // return default
 	    return $ordered_ad_ids;
+	}
+
+	/**
+	 * add extra output markup for slider group
+	 *
+	 * @param arr $ad_content array with ad contents
+	 * @param obj $group Advanced_Ads_Group
+	 * @return arr $ad_content with extra markup
+	 */
+	public function output_slider_markup( array $ad_content, Advanced_Ads_Group $group ){
+
+		if( count( $ad_content ) <= 1 ) {
+		    return;
+		}
+
+		$settings = array();
+		if( isset( $group->options['slider']['delay'] ) ) {
+		    $settings[] = 'delay: ' . absint( $group->options['slider']['delay'] );
+		}
+		$settings = implode( ', ', $settings );
+
+		foreach( $ad_content as $_key => $_content ){
+		    $ad_content[$_key] = '<li>' . $_content . '</li>';
+		}
+
+		$slider_id = 'advads-slider-' . mt_rand();
+		$css = "<style>#$slider_id { position: relative; overflow: auto; } #$slider_id li { list-style: none; } #$slider_id ul li { float: left; }</style>";
+		$script = "<script>jQuery(function() { jQuery('#$slider_id').unslider({ $settings }); });</script>";
+
+		array_unshift( $ad_content, '<div id="'. $slider_id.'"><ul>' );
+		array_push( $ad_content, '</ul></div>' );
+		array_push( $ad_content, $css );
+		array_push( $ad_content, $script );
+
+		return $ad_content;
 	}
 }

@@ -20,6 +20,8 @@ merchantability or fitness for a specific purpose.
 
 This plugins adds a new ad group whose frontend output happens as a slider with rotating banners.
 
+The slider is built on http://unslider.com/.
+
 == Installation ==
 
 The Slider plugin is based on the free Advanced Ads plugin, a simple and powerful ad management solution for WordPress. Before using this plugin download, install and activate Advanced Ads for free from http://wordpress.org/plugins/advanced-ads/.
