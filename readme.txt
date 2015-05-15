@@ -1,11 +1,12 @@
 === Advanced Ads Slider ===
 Contributors: webzunft
 Tags: ads, ad, banner, adverts, advertisement, slider
-Requires at least: 3.5, Advanced Ads 1.5.4
+Requires at least: 3.5, Advanced Ads 1.5.5
 Tested up to: 4.2.2
 Stable tag: 1.0.0
 
 Create a slider from your ads.
+Add-on for https://wpadvancedads.com
 
 == Copyright ==
 
