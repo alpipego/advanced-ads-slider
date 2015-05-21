@@ -30,5 +30,9 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* fixed issue when group has just one item
+
 = 1.0.0 =
 * first plugin version
