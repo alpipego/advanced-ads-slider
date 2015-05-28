@@ -67,7 +67,7 @@ class Advanced_Ads_Slider {
 	 */
 	public function output_slider_markup( array $ad_content, Advanced_Ads_Group $group ){
 
-		if( count( $ad_content ) <= 1 ) {
+		if( count( $ad_content ) <= 1 || 'slider' !== $group->type ) {
 		    return $ad_content;
 		}
 

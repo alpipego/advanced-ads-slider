@@ -30,6 +30,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* tested ad group type before building the slider
+
 = 1.0.1 =
 
 * fixed issue when group has just one item
