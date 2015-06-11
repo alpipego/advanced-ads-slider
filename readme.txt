@@ -30,6 +30,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* added class attribute to slider box
+
 = 1.0.2 =
 
 * test ad group type before building the slider
