@@ -60,8 +60,12 @@ class Advanced_Ads_Slider_Plugin {
             if ( ! class_exists( 'Advanced_Ads', false ) ) {
                 return ;
             }
-
             $this->options_slug =  ADVADS_SLUG . '-slider';
+
+	    // register plugin for auto updates
+	    if( is_admin() ){
+		    add_filter( 'advanced-ads-add-ons', array( $this, 'register_auto_updater' ), 10 );
+	    }
 	}
 
         /**
@@ -87,6 +91,23 @@ class Advanced_Ads_Slider_Plugin {
 		    'description' => __( 'Display all ads as a slider', AAS_SLUG ),
 	    );
 	    return $group_types;
+	}
+
+	/**
+	 * register plugin for the auto updater in the base plugin
+	 *
+	 * @param arr $plugins plugin that are already registered for auto updates
+	 * @return arr $plugins
+	 */
+	public function register_auto_updater( array $plugins = array() ){
+
+		$plugins['slider'] = array(
+			'name' => AAS_PLUGIN_NAME,
+			'version' => AAS_VERSION,
+			'path' => AAS_BASE_PATH . 'slider.php',
+			'options_slug' => $this->options_slug,
+		);
+		return $plugins;
 	}
 }
 

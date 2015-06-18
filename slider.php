@@ -29,7 +29,7 @@ define('AAS_SLUG', 'slider-ads');
 
 define( 'AAS_VERSION', '1.0.2' );
 define( 'AAS_PLUGIN_URL', 'https://wpadvancedads.com' );
-define( 'AAS_PLUGIN_NAME', 'Ad Slider' );
+define( 'AAS_PLUGIN_NAME', 'Slider' );
 
 
 include_once( plugin_dir_path( __FILE__ ) . 'classes/plugin.php' );
