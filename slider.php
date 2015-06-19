@@ -27,7 +27,7 @@ define('AAS_BASE_URL', plugin_dir_url(__FILE__));
 // plugin slug and textdoamin
 define('AAS_SLUG', 'slider-ads');
 
-define( 'AAS_VERSION', '1.0.2' );
+define( 'AAS_VERSION', '1.0.3' );
 define( 'AAS_PLUGIN_URL', 'https://wpadvancedads.com' );
 define( 'AAS_PLUGIN_NAME', 'Ad Slider' );
 
