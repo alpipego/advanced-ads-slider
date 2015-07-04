@@ -30,6 +30,11 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* removed unneeded js file
+* fixes to now display all slides before whole slider is loaded
+
 = 1.0.3 =
 
 * added class attribute to slider box
