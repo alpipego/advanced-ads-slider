@@ -7,7 +7,7 @@
  * Description:       Create a slider from your ads.
  * Version:           1.0.4
  * Author:            Thomas Maier
- * Author URI:        http://webgilde.com
+ * Author URI:        https://wpadvancedads.com
  * Text Domain:       slider-ads
  * Domain Path:       /languages
  */

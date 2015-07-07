@@ -30,6 +30,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* updated plugin link
+
 = 1.0.4 =
 
 * removed unneeded js file
