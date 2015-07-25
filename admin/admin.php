@@ -20,11 +20,35 @@ class Advanced_Ads_Slider_Admin {
 	public function __construct() {
 
 		$this->plugin = Advanced_Ads_Slider_Plugin::get_instance();
+
+		add_action( 'plugins_loaded', array( $this, 'wp_admin_plugins_loaded' ) );
+
+	}
+
+	/**
+	 * load actions and filters
+	 */
+	public function wp_admin_plugins_loaded(){
+
+		if( ! class_exists( 'Advanced_Ads_Admin', false ) ) {
+			// show admin notice
+			add_action( 'admin_notices', array( $this, 'missing_plugin_notice' ) );
+
+			return;
+		}
+
 		// add group options
 		add_action( 'advanced-ads-group-form-options', array( $this, 'group_options' ) );
 
 		// add snippet to overview page
 		add_action('advanced-ads-admin-overview-before', array($this, 'register_overview_page_widget'), 10, 2);
+	}
+
+	/**
+	 * show warning if Advanced Ads js is not activated
+	 */
+	public function missing_plugin_notice(){
+		echo '<div class="error"><p>' . sprintf( __( '<strong>Advanced Ads – Slider</strong> is an extension for the Advanced Ads plugin. Please visit <a href="%s" target="_blank" >wpadvancedads.com</a> to download it for free.', AAS_SLUG ), 'https://wpadvancedads.com' ) . '</p></div>';
 	}
 
 	/**
