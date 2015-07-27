@@ -5,7 +5,7 @@
  * Plugin Name:       Advanced Ads – Slider
  * Plugin URI:        https://wpadvancedads.com/add-ons/slider/
  * Description:       Create a slider from your ads.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            Thomas Maier
  * Author URI:        https://wpadvancedads.com
  * Text Domain:       slider-ads
@@ -27,7 +27,7 @@ define('AAS_BASE_URL', plugin_dir_url(__FILE__));
 // plugin slug and textdoamin
 define('AAS_SLUG', 'slider-ads');
 
-define( 'AAS_VERSION', '1.0.4' );
+define( 'AAS_VERSION', '1.0.5' );
 define( 'AAS_PLUGIN_URL', 'https://wpadvancedads.com' );
 define( 'AAS_PLUGIN_NAME', 'Ad Slider' );
 
