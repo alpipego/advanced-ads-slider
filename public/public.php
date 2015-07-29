@@ -82,7 +82,9 @@ class Advanced_Ads_Slider {
 		}
 
 		$slider_id = 'advads-slider-' . mt_rand();
-		$css = "<style>#$slider_id { position: relative; overflow: hidden; } #$slider_id li { list-style: none; } #$slider_id ul li { width: 100%; float: left; }</style>";
+		$css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
+			. ".advads-slider ul, .advads-slider ul { list-style: none; margin: 0 !important; padding: 0 !important; } "
+			. ".advads-slider ul li { width: 100%; float: left; }</style>";
 		$script = "<script>jQuery(function() { jQuery('#$slider_id').unslider({ $settings }); });</script>";
 
 		array_unshift( $ad_content, '<div id="'. $slider_id.'" class="advads-slider"><ul>' );
