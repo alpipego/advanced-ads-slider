@@ -30,6 +30,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* hide number of ads setting in the group, because it confuses too much
+
 = 1.0.5 =
 
 * updated plugin link

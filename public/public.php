@@ -26,6 +26,10 @@ class Advanced_Ads_Slider {
 		add_filter( 'advanced-ads-group-output-ad-ids', array( $this, 'output_ad_ids' ), 10, 4 );
 
 		add_filter( 'advanced-ads-group-output-array', array( $this, 'output_slider_markup'), 10, 2 );
+
+		// manipulate number of ads that should be displayed in a group
+		add_filter( 'advanced-ads-group-ad-count', array($this, 'adjust_ad_group_number'), 10, 2 );
+
         }
 
 	/**
@@ -56,6 +60,22 @@ class Advanced_Ads_Slider {
 
 	    // return default
 	    return $ordered_ad_ids;
+	}
+
+	/**
+	 * adjust the ad group number if the ad type is a slider
+	 *
+	 * @param int $ad_count
+	 * @param obj $group Advanced_Ads_Group
+	 * @return int $ad_count
+	 */
+	public function adjust_ad_group_number( $ad_count = 0, $group ){
+
+	    if( $group->type === 'slider' ){
+		    return 'all';
+	    }
+
+	    return $ad_count;
 	}
 
 	/**

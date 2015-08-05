@@ -37,11 +37,14 @@ class Advanced_Ads_Slider_Admin {
 			return;
 		}
 
+		// admin scripts
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+
 		// add group options
 		add_action( 'advanced-ads-group-form-options', array( $this, 'group_options' ) );
 
 		// add snippet to overview page
-		add_action('advanced-ads-admin-overview-before', array($this, 'register_overview_page_widget'), 10, 2);
+		add_action( 'advanced-ads-admin-overview-before', array($this, 'register_overview_page_widget' ), 10, 2);
 	}
 
 	/**
@@ -49,6 +52,17 @@ class Advanced_Ads_Slider_Admin {
 	 */
 	public function missing_plugin_notice(){
 		echo '<div class="error"><p>' . sprintf( __( '<strong>Advanced Ads – Slider</strong> is an extension for the Advanced Ads plugin. Please visit <a href="%s" target="_blank" >wpadvancedads.com</a> to download it for free.', AAS_SLUG ), 'https://wpadvancedads.com' ) . '</p></div>';
+	}
+
+	/**
+	 * enqueue plugin admin script
+	 */
+	public function enqueue_admin_scripts() {
+		$screen = get_current_screen();
+
+		if( 'advanced-ads_page_advanced-ads-groups' === $screen->id ){
+		    wp_enqueue_script( 'advads-slider' . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array('jquery'), AAS_VERSION );
+		}
 	}
 
 	/**
