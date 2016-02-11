@@ -23,6 +23,7 @@ if(!class_exists('Advanced_Ads_Slider_Plugin')) {
 // load basic path and url to the plugin
 define('AAS_BASE_PATH', plugin_dir_path(__FILE__));
 define('AAS_BASE_URL', plugin_dir_url(__FILE__));
+define('AAS_BASE_DIR', dirname( plugin_basename( __FILE__ ) ) ); // directory of the plugin without any paths
 
 // plugin slug and textdoamin
 define('AAS_SLUG', 'slider-ads');

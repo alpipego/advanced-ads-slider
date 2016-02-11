@@ -60,6 +60,8 @@ class Advanced_Ads_Slider_Plugin {
             if ( ! class_exists( 'Advanced_Ads', false ) ) {
                 return ;
             }
+	    
+	    $this->load_plugin_textdomain();
 
             $this->options_slug =  ADVADS_SLUG . '-slider';
 	}
@@ -73,6 +75,16 @@ class Advanced_Ads_Slider_Plugin {
 
             return Advanced_Ads::get_instance()->options();
         }
+	
+	/**
+	 * Load the plugin text domain for translation.
+	 *
+	 * @since    1.0.7
+	 */
+	public function load_plugin_textdomain() {
+	       // $locale = apply_filters('advanced-ads-plugin-locale', get_locale(), $domain);
+	       load_plugin_textdomain( AAS_SLUG, false, AAS_BASE_DIR . '/languages' );
+	}
 
 	/**
 	 * add slider group type
