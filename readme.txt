@@ -32,6 +32,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 = untagged =
 
+* updated unslider script
 * added Spanish translation
 
 = 1.0.6 =
