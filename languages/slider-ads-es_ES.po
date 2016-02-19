@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 11:10:08 GMT-0500 (Hora est. Pacífico, "
 "Sudamérica)\n"
-"PO-Revision-Date: Thu Feb 04 2016 11:37:29 GMT-0500 (Hora est. Pacífico, "
+"PO-Revision-Date: Thu Feb 11 2016 11:04:01 GMT-0500 (Hora est. Pacífico, "
 "Sudamérica)\n"
 "Last-Translator: Andrés Rueda <anrueda@gmail.com>\n"
 "Language-Team: \n"
@@ -44,15 +44,15 @@ msgstr "Thomas Maier"
 msgid "https://wpadvancedads.com"
 msgstr "https://wpadvancedads.com"
 
-#: /classes/plugin.php:86
+#: classes/plugin.php:86
 msgid "Ad Slider"
 msgstr "Slider de Anuncios"
 
-#: /classes/plugin.php:87
+#: classes/plugin.php:87
 msgid "Display all ads as a slider"
 msgstr "Mostrar todos los anuncios como un slider"
 
-#: /admin/admin.php:54
+#: admin/admin.php:54
 #, php-format
 msgid ""
 "<strong>Advanced Ads – Slider</strong> is an extension for the Advanced Ads "
@@ -63,18 +63,18 @@ msgstr ""
 "Advanced Ads. Por favor, visita <a href=\"%s\" target=\"_blank\" >wpadvancedads."
 "com</a> para descargarlo gratuitamente."
 
-#: /admin/views/overview.php:1
+#: admin/views/overview.php:1
 msgid "Slider add-on is installed"
 msgstr "El add-on del Slider está instalado"
 
-#: /admin/views/overview.php:3
+#: admin/views/overview.php:3
 msgid "Visit the manual"
 msgstr "Consulta el manual"
 
-#: /admin/views/group-options.php:1
+#: admin/views/group-options.php:1
 msgid "Slide delay"
-msgstr "Retardo de la diapositiva"
+msgstr "Retardo de la Diapositiva"
 
-#: /admin/views/group-options.php:3
+#: admin/views/group-options.php:3
 msgid "Pause for each ad slide in milliseconds"
 msgstr "Pausa para cada anuncio en milisegundos"
