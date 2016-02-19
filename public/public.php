@@ -118,15 +118,17 @@ class Advanced_Ads_Slider {
 		foreach( $ad_content as $_key => $_content ){
 		    $ad_content[$_key] = '<li>' . $_content . '</li>';
 		}
+		
+		$prefix = Advanced_Ads_Plugin::get_instance()->get_frontend_prefix();
 
-		$slider_id = 'advads-slider-' . mt_rand();
+		$slider_id = $prefix . 'slider-' . $group->id;
 		/* custom css file was added with version 1.1. Deactivate the following lines if there are issues with your layout
 		 * $css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
 			. ".advads-slider ul, .advads-slider li { list-style: none; margin: 0 !important; padding: 0 !important; } "
 			. ".advads-slider ul li { }</style>";*/
 		$script = "<script>jQuery(function() { jQuery('#$slider_id').unslider({ $settings }); });</script>";
 
-		array_unshift( $ad_content, '<div id="'. $slider_id.'" class="advads-slider"><ul>' );
+		array_unshift( $ad_content, '<div id="'. $slider_id.'" class="'. $prefix .'slider"><ul>' );
 		array_push( $ad_content, '</ul></div>' );
 		//array_push( $ad_content, $css );
 		array_push( $ad_content, $script );

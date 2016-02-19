@@ -39,6 +39,8 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 * updated unslider script and options
 * added swipe feature
+* set a fixed slider id
+* use ID prefix for slider id and class
 * added Spanish translation
 * added German translation
 
