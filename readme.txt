@@ -23,6 +23,11 @@ This plugins adds a new ad group whose frontend output happens as a slider with 
 
 The slider is built on http://unslider.com/.
 
+Other scripts used:
+
+* https://github.com/stephband/jquery.event.swipe
+* https://github.com/stephband/jquery.event.move
+
 == Installation ==
 
 The Slider plugin is based on the free Advanced Ads plugin, a simple and powerful ad management solution for WordPress. Before using this plugin download, install and activate Advanced Ads for free from http://wordpress.org/plugins/advanced-ads/.
@@ -32,7 +37,8 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 = untagged =
 
-* updated unslider script
+* updated unslider script and options
+* added swipe feature
 * added Spanish translation
 
 = 1.0.6 =

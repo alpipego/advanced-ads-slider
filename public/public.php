@@ -22,6 +22,7 @@ class Advanced_Ads_Slider {
 
                 // add js file to header
                 add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
+                add_action( 'wp_enqueue_scripts', array( $this, 'register_styles' ) );
 
 		add_filter( 'advanced-ads-group-output-ad-ids', array( $this, 'output_ad_ids' ), 10, 4 );
 
@@ -38,10 +39,16 @@ class Advanced_Ads_Slider {
 	 * @since 1.0.0
 	 */
 	public function register_scripts(){
-		// include file only if js method is enabled
 		wp_enqueue_script( 'unslider-js', AAS_BASE_URL . 'public/assets/js/unslider.min.js', array('jquery'), AAS_VERSION );
+		wp_enqueue_style( 'unslider-css', AAS_BASE_URL . 'public/assets/css/unslider.css', array(), AAS_VERSION );
+		// scripts for swipe feature
+		if( ! defined( 'ADVANCED_ADS_NO_SWIPE') ) {
+		    wp_enqueue_script( 'unslider-move-js', AAS_BASE_URL . 'public/assets/js/jquery.event.move.js', array('jquery'), AAS_VERSION );
+		    wp_enqueue_script( 'unslider-swipe-js', AAS_BASE_URL . 'public/assets/js/jquery.event.swipe.js', array('jquery'), AAS_VERSION );
+		}
+		
 	}
-
+	
 	/**
 	 * get ids from ads in the order they should be displayed
 	 *
@@ -93,23 +100,35 @@ class Advanced_Ads_Slider {
 
 		$settings = array();
 		if( isset( $group->options['slider']['delay'] ) ) {
-		    $settings[] = 'delay: ' . absint( $group->options['slider']['delay'] );
+		    $settings['delay'] = absint( $group->options['slider']['delay'] );
+		    $settings['autoplay'] = 'true';
+		    $settings['nav'] = 'false';
+		    $settings['arrows'] = 'false';
 		}
-		$settings = implode( ', ', $settings );
+		
+		$settings = apply_filters( 'advanced-ads-slider-settings', $settings );
+		
+		// merge option keys and values in preparation for the option string
+		$setting_attributes = array_map(function($value, $key) {
+		    return $key.':'.$value.'';
+		}, array_values($settings), array_keys($settings));
+		
+		$settings = implode( ', ', $setting_attributes );
 
 		foreach( $ad_content as $_key => $_content ){
 		    $ad_content[$_key] = '<li>' . $_content . '</li>';
 		}
 
 		$slider_id = 'advads-slider-' . mt_rand();
-		$css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
+		/* custom css file was added with version 1.1. Deactivate the following lines if there are issues with your layout
+		 * $css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
 			. ".advads-slider ul, .advads-slider li { list-style: none; margin: 0 !important; padding: 0 !important; } "
-			. ".advads-slider ul li { width: 100%; float: left; }</style>";
+			. ".advads-slider ul li { }</style>";*/
 		$script = "<script>jQuery(function() { jQuery('#$slider_id').unslider({ $settings }); });</script>";
 
 		array_unshift( $ad_content, '<div id="'. $slider_id.'" class="advads-slider"><ul>' );
 		array_push( $ad_content, '</ul></div>' );
-		array_push( $ad_content, $css );
+		//array_push( $ad_content, $css );
 		array_push( $ad_content, $script );
 
 		return $ad_content;
