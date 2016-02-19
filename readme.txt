@@ -2,7 +2,7 @@
 Contributors: webzunft
 Tags: ads, ad, banner, adverts, advertisement, slider
 Requires at least: 3.5, Advanced Ads 1.5.5
-Tested up to: 4.2.3
+Tested up to: 4.4.2
 Stable tag: 1.0.6
 
 Create a slider from your ads.
@@ -40,6 +40,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 * updated unslider script and options
 * added swipe feature
 * added Spanish translation
+* added German translation
 
 = 1.0.6 =
 
