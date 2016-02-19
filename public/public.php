@@ -22,7 +22,6 @@ class Advanced_Ads_Slider {
 
                 // add js file to header
                 add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
-                add_action( 'wp_enqueue_scripts', array( $this, 'register_styles' ) );
 
 		add_filter( 'advanced-ads-group-output-ad-ids', array( $this, 'output_ad_ids' ), 10, 4 );
 
