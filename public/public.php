@@ -97,41 +97,58 @@ class Advanced_Ads_Slider {
 		    return $ad_content;
 		}
 
-		$settings = array();
-		if( isset( $group->options['slider']['delay'] ) ) {
-		    $settings['delay'] = absint( $group->options['slider']['delay'] );
-		    $settings['autoplay'] = 'true';
-		    $settings['nav'] = 'false';
-		    $settings['arrows'] = 'false';
-		}
-		
-		$settings = apply_filters( 'advanced-ads-slider-settings', $settings );
-		
-		// merge option keys and values in preparation for the option string
-		$setting_attributes = array_map(function($value, $key) {
-		    return $key.':'.$value.'';
-		}, array_values($settings), array_keys($settings));
-		
-		$settings = implode( ', ', $setting_attributes );
+		$slider_options = self::$this->get_slider_options( $group );
 
 		foreach( $ad_content as $_key => $_content ){
 		    $ad_content[$_key] = '<li>' . $_content . '</li>';
 		}
-		
-		$prefix = Advanced_Ads_Plugin::get_instance()->get_frontend_prefix();
 
-		$slider_id = $prefix . 'slider-' . $group->id;
 		/* custom css file was added with version 1.1. Deactivate the following lines if there are issues with your layout
 		 * $css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
 			. ".advads-slider ul, .advads-slider li { list-style: none; margin: 0 !important; padding: 0 !important; } "
 			. ".advads-slider ul li { }</style>";*/
-		$script = "<script>jQuery(function() { jQuery('#$slider_id').unslider({ $settings }); });</script>";
+		$script = '<script>jQuery(function() { jQuery( "#' . $slider_options['slider_id'] . '" ).unslider({ ' . $slider_options['settings'] . ' }); });</script>';
 
-		array_unshift( $ad_content, '<div id="'. $slider_id.'" class="'. $prefix .'slider"><ul>' );
+		array_unshift( $ad_content, '<div id="'. $slider_options['slider_id'].'" class="'. $slider_options['prefix'] .'slider"><ul>' );
 		array_push( $ad_content, '</ul></div>' );
 		//array_push( $ad_content, $css );
 		array_push( $ad_content, $script );
 
 		return $ad_content;
 	}
+
+    /**
+     * return slider options
+     *
+     * @param obj $group Advanced_Ads_Group
+     * @return array that contains slider options
+     */
+    public static function get_slider_options( Advanced_Ads_Group $group ) {
+        $settings = array();
+        if ( isset( $group->options['slider']['delay'] ) ) {
+            $settings['delay'] = absint( $group->options['slider']['delay'] );
+            $settings['autoplay'] = 'true';
+            $settings['nav'] = 'false';
+            $settings['arrows'] = 'false';
+        }
+
+        $settings = apply_filters( 'advanced-ads-slider-settings', $settings );
+
+        // merge option keys and values in preparation for the option string
+        $setting_attributes = array_map(function($value, $key) {
+            return $key.':'.$value.'';
+        }, array_values($settings), array_keys($settings));
+
+        $settings = implode( ', ', $setting_attributes );
+
+        $prefix = Advanced_Ads_Plugin::get_instance()->get_frontend_prefix();
+        $slider_id = $prefix . 'slider-' . $group->id;
+
+        return array(
+            'prefix' => $prefix,
+            'slider_id' => $slider_id,
+            'settings' => $settings // slider init options
+        );
+    }
+
 }
