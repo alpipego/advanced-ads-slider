@@ -97,7 +97,7 @@ class Advanced_Ads_Slider {
 		    return $ad_content;
 		}
 
-		$slider_options = self::$this->get_slider_options( $group );
+		$slider_options = self::get_slider_options( $group );
 
 		foreach( $ad_content as $_key => $_content ){
 		    $ad_content[$_key] = '<li>' . $_content . '</li>';
