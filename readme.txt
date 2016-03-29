@@ -3,7 +3,7 @@ Contributors: webzunft
 Tags: ads, ad, banner, adverts, advertisement, slider
 Requires at least: 3.5, Advanced Ads 1.5.5
 Tested up to: 4.4.2
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 
 Create a slider from your ads.
 Add-on for https://wpadvancedads.com
@@ -34,6 +34,10 @@ The Slider plugin is based on the free Advanced Ads plugin, a simple and powerfu
 You can use Advanced Ads along any other ad management plugin and don’t need to switch completely.
 
 == Changelog ==
+
+= 1.1.2 =
+
+* allows multiple instances of the same slider on the same page
 
 = 1.1.1 =
 
