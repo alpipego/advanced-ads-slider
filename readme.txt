@@ -35,6 +35,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* added French translation
+
 = 1.1.2 =
 
 * allows multiple instances of the same slider on the same page
