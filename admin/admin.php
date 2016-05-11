@@ -73,6 +73,7 @@ class Advanced_Ads_Slider_Admin {
 	public function group_options( Advanced_Ads_Group $group ){
 
 		$delay = isset( $group->options['slider']['delay'] ) ? absint( $group->options['slider']['delay'] ) : 2000;
+		$random = isset( $group->options['slider']['random'] ) ? $group->options['slider']['random'] : false;
 
 		include AAS_BASE_PATH . 'admin/views/group-options.php';
 	}

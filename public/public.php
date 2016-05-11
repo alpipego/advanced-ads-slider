@@ -23,7 +23,7 @@ class Advanced_Ads_Slider {
                 // add js file to header
                 add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
 
-		add_filter( 'advanced-ads-group-output-ad-ids', array( $this, 'output_ad_ids' ), 10, 4 );
+		add_filter( 'advanced-ads-group-output-ad-ids', array( $this, 'output_ad_ids' ), 10, 5 );
 
 		add_filter( 'advanced-ads-group-output-array', array( $this, 'output_slider_markup'), 10, 2 );
 
@@ -55,13 +55,17 @@ class Advanced_Ads_Slider {
 	 * @param str $type group type
 	 * @param arr $ads array with ad objects
 	 * @param arr $weights array with ad weights
+	 * @param arr $group Advanced_Ads_Group Object
 	 * @return arr $ad_ids
 	 */
-	public function output_ad_ids( $ordered_ad_ids, $type, $ads, $weights ){
-
+	public function output_ad_ids( $ordered_ad_ids, $type, $ads, $weights, Advanced_Ads_Group $group ){
 	    // return order by weights if this is a slider
 	    if( $type === 'slider' ){
-		return array_keys($weights);
+			if(isset($group->options['slider']['random'])){
+				return $group->shuffle_ads($ads, $weights);
+			} else {
+				return array_keys($weights);
+			}
 	    }
 
 	    // return default
