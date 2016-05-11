@@ -111,8 +111,10 @@ class Advanced_Ads_Slider {
 		 * $css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
 			. ".advads-slider ul, .advads-slider li { list-style: none; margin: 0 !important; padding: 0 !important; } "
 			. ".advads-slider ul li { }</style>";*/
-		$script = '<script>jQuery(function() { jQuery( ".' . $slider_options['init_class'] . '" ).unslider({ ' . $slider_options['settings'] . ' }); });</script>';
-
+		$slider_var = '$' . preg_replace( '/[^\da-z]/i', '', $slider_options['init_class'] );
+		
+		$script = '<script>jQuery(function() { var '. $slider_var .' = jQuery( ".' . $slider_options['init_class'] . '" ).unslider({ ' . $slider_options['settings'] . ' });'.
+		$slider_var . '.on("mouseover", function(){'.$slider_var.'.unslider("stop");}).on("mouseout", function() {'.$slider_var.'.unslider("start");});});</script>';
 		array_unshift( $ad_content, '<div id="'. $slider_options['slider_id'].'" class="'. $slider_options['init_class'] .' ' . $slider_options['prefix'] .'slider"><ul>' );
 		array_push( $ad_content, '</ul></div>' );
 		//array_push( $ad_content, $css );
