@@ -55,13 +55,13 @@ class Advanced_Ads_Slider {
 	 * @param str $type group type
 	 * @param arr $ads array with ad objects
 	 * @param arr $weights array with ad weights
+	 * @param arr $group Advanced_Ads_Group Object
 	 * @return arr $ad_ids
 	 */
 	public function output_ad_ids( $ordered_ad_ids, $type, $ads, $weights, Advanced_Ads_Group $group ){
 	    // return order by weights if this is a slider
 	    if( $type === 'slider' ){
 			if(isset($group->options['slider']['random'])){
-				error_log(print_r($group->shuffle_ads($ads, $weights), true));
 				return $group->shuffle_ads($ads, $weights);
 			} else {
 				return array_keys($weights);

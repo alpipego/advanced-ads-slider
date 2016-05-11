@@ -18,7 +18,7 @@
             <input type="checkbox" name="advads-groups[<?php echo $group->id; ?>][options][slider][random]"
             <?php if ($random) : ?>
                 checked = "checked";
-            <?php endif;?>
+            <?php endif; ?>
             />
         </label>
         <p class="description"><?php _e('Display ads in the slider in a random order', AAS_SLUG); ?></p>
