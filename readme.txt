@@ -37,6 +37,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 = untagged =
 
+* added option to randomize order of ads
 * added French translation
 
 = 1.1.2 =
