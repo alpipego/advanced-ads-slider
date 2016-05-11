@@ -111,8 +111,8 @@ class Advanced_Ads_Slider {
 		 * $css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
 			. ".advads-slider ul, .advads-slider li { list-style: none; margin: 0 !important; padding: 0 !important; } "
 			. ".advads-slider ul li { }</style>";*/
-		$script = '<script>jQuery(function() { jQuery( ".' . $slider_options['init_class'] . '" ).unslider({ ' . $slider_options['settings'] . ' }); });</script>';
-
+		$script = '<script>jQuery(function() { var $slide = jQuery( ".' . $slider_options['init_class'] . '" ).unslider({ ' . $slider_options['settings'] . ' });'.
+		'$slide.on("mouseover", function(){$slide.unslider("stop");}).on("mouseout", function() {$slide.unslider("start");});;});</script>';
 		array_unshift( $ad_content, '<div id="'. $slider_options['slider_id'].'" class="'. $slider_options['init_class'] .' ' . $slider_options['prefix'] .'slider"><ul>' );
 		array_push( $ad_content, '</ul></div>' );
 		//array_push( $ad_content, $css );
