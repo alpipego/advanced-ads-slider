@@ -141,9 +141,7 @@ class Advanced_Ads_Slider {
         $settings = apply_filters( 'advanced-ads-slider-settings', $settings );
 
         // merge option keys and values in preparation for the option string
-        $setting_attributes = array_map(function($value, $key) {
-            return $key.':'.$value.'';
-        }, array_values($settings), array_keys($settings));
+	$setting_attributes = array_map( array( 'Advanced_Ads_Slider', 'map_settings' ), array_values($settings), array_keys($settings));
 
         $settings = implode( ', ', $setting_attributes );
 
@@ -157,6 +155,16 @@ class Advanced_Ads_Slider {
             'init_class' => $slider_init_class,
             'settings' => $settings // slider init options
         );
+    }
+    
+    /**
+     * helper function for array_map, see above
+     * needed for php prior 5.3
+     */
+    public static function map_settings( $value, $key ){
+	
+	return $key.':'.$value.'';
+	
     }
 
 }
