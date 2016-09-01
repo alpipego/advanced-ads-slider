@@ -83,7 +83,7 @@ class Advanced_Ads_Slider_Plugin {
 	 */
 	public function load_plugin_textdomain() {
 	       // $locale = apply_filters('advanced-ads-plugin-locale', get_locale(), $domain);
-	       load_plugin_textdomain( AAS_SLUG, false, AAS_BASE_DIR . '/languages' );
+	       load_plugin_textdomain( 'slider-ads', false, AAS_BASE_DIR . '/languages' );
 	}
 
 	/**
@@ -95,8 +95,8 @@ class Advanced_Ads_Slider_Plugin {
 	public function add_group_type( array $group_types ){
 
 	    $group_types['slider'] = array(
-		    'title' => __( 'Ad Slider', AAS_SLUG ),
-		    'description' => __( 'Display all ads as a slider', AAS_SLUG ),
+		    'title' => __( 'Ad Slider', 'slider-ads' ),
+		    'description' => __( 'Display all ads as a slider', 'slider-ads' ),
 	    );
 	    return $group_types;
 	}

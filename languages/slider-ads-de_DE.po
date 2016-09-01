@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Ads – Slider\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Feb 11 2016 11:23:30 GMT+0100 (CET)\n"
-"PO-Revision-Date: Fri Feb 19 2016 16:42:53 GMT+0100 (CET)\n"
-"Last-Translator: admin <post@webzunft.de>\n"
-"Language-Team: \n"
-"Language: German\n"
+"POT-Creation-Date: 2016-09-01 13:15+0000\n"
+"PO-Revision-Date: 2016-09-01 13:17+0000\n"
+"Last-Translator: Lukas <hans-lukas.herse@webgilde.com>\n"
+"Language-Team: German\n"
+"Language: de-DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,57 +22,64 @@ msgstr ""
 "X-Generator: Loco - https://localise.biz/\n"
 "X-Loco-Target-Locale: de_DE"
 
+#: admin/views/group-options.php:16
+msgid "Random order"
+msgstr "Zufallsreihenfolge"
+
+#: admin/views/group-options.php:24
+msgid "Display ads in the slider in a random order"
+msgstr "Zeige Anzeigen in zufälliger Reihenfolge im Slider"
+
 #. Name of the plugin
 msgid "Advanced Ads – Slider"
-msgstr ""
+msgstr "Advanced Ads – Slider"
 
 #. URI of the plugin
-msgid "https://wpadvancedads.com/add-ons/slider"
+msgid "https://wpadvancedads.com/add-ons/slider/"
 msgstr ""
-
-#. Description of the plugin
-msgid "Create a slider from your ads."
-msgstr "Erstelle einen Slider aus deinen Anzeigen."
 
 #. Author of the plugin
 msgid "Thomas Maier"
-msgstr ""
+msgstr "Thomas Maier"
 
 #. Author URI of the plugin
 msgid "https://wpadvancedads.com"
 msgstr ""
 
-#: ../admin/admin.php:54
-#, php-format
+#: admin/admin.php:54
 msgid ""
 "<strong>Advanced Ads – Slider</strong> is an extension for the Advanced Ads "
-"plugin. Please visit <a href=\"%s\" target=\"_blank\" >wpadvancedads.com</a> to "
-"download it for free."
+"plugin. Please visit <a href=\"%s\" target=\"_blank\" >wpadvancedads.com</a> "
+"to download it for free."
 msgstr ""
 "<strong>Advanced Ads – Slider</strong> ist eine Erweiterung für das Advanced "
-"Ads Plugin. Sie können dieses kostenlos unter <a href=\"%s\" target=\"_blank\" "
-">wpadvancedads.com</a> herunterlagen."
+"Ads Plugin. Sie können dieses kostenlos unter <a href=\"%s\" "
+"target=\"_blank\" >wpadvancedads.com</a> herunterlagen."
 
-#: ../admin/views/group-options.php:1
-msgid "Slide delay"
-msgstr "Verzögerung"
-
-#: ../admin/views/group-options.php:3
-msgid "Pause for each ad slide in milliseconds"
-msgstr "Pause zwischen den Slides in Millisekunden"
-
-#: ../admin/views/overview.php:1
-msgid "Slider add-on is installed"
-msgstr "Slider installiert."
-
-#: ../admin/views/overview.php:3
-msgid "Visit the manual"
-msgstr "Anleitung anschauen"
-
-#: ../classes/plugin.php:98
+#: classes/plugin.php:98
 msgid "Ad Slider"
 msgstr "Anzeigen-Slider"
 
-#: ../classes/plugin.php:99
+#: classes/plugin.php:99
 msgid "Display all ads as a slider"
 msgstr "Mehrere Anzeigen als Slider anzeigen."
+
+#: admin/views/group-options.php:8
+msgid "Slide delay"
+msgstr "Verzögerung"
+
+#: admin/views/group-options.php:12
+msgid "Pause for each ad slide in milliseconds"
+msgstr "Pause zwischen den Slides in Millisekunden"
+
+#: admin/views/overview.php:1
+msgid "Slider add-on is installed"
+msgstr "Slider installiert."
+
+#: admin/views/overview.php:3
+msgid "Visit the manual"
+msgstr "Anleitung anschauen"
+
+#. Description of the plugin
+msgid "Create a slider from your ads."
+msgstr "Erstelle einen Slider aus deinen Anzeigen."

@@ -51,7 +51,7 @@ class Advanced_Ads_Slider_Admin {
 	 * show warning if Advanced Ads js is not activated
 	 */
 	public function missing_plugin_notice(){
-		echo '<div class="error"><p>' . sprintf( __( '<strong>Advanced Ads – Slider</strong> is an extension for the Advanced Ads plugin. Please visit <a href="%s" target="_blank" >wpadvancedads.com</a> to download it for free.', AAS_SLUG ), 'https://wpadvancedads.com' ) . '</p></div>';
+		echo '<div class="error"><p>' . sprintf( __( '<strong>Advanced Ads – Slider</strong> is an extension for the Advanced Ads plugin. Please visit <a href="%s" target="_blank" >wpadvancedads.com</a> to download it for free.', 'slider-ads' ), 'https://wpadvancedads.com' ) . '</p></div>';
 	}
 
 	/**
