@@ -37,6 +37,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 = untagged =
 
+* introduced ADVANCED_ADS_SLIDER_USE_CDN constant to use main unslider scripts from CDN
 * changed textdomain
 * updated German translation
 
