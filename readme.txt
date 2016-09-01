@@ -35,9 +35,14 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* changed textdomain
+* updated German translation
+
 = 1.2.1 =
 
-* compatibility with php prio 5.3
+* compatibility with php prior 5.3
 
 = 1.2 =
 
