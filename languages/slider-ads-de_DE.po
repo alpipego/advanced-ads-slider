@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Advanced Ads – Slider\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-01 13:15+0000\n"
-"PO-Revision-Date: 2016-09-01 13:17+0000\n"
+"PO-Revision-Date: 2016-09-01 13:45+0000\n"
 "Last-Translator: Lukas <hans-lukas.herse@webgilde.com>\n"
 "Language-Team: German\n"
 "Language: de-DE\n"
@@ -22,6 +22,14 @@ msgstr ""
 "X-Generator: Loco - https://localise.biz/\n"
 "X-Loco-Target-Locale: de_DE"
 
+#. URI of the plugin
+msgid "https://wpadvancedads.com/add-ons/slider/"
+msgstr "https://wpadvancedads.com/add-ons/slider/"
+
+#. Author URI of the plugin
+msgid "https://wpadvancedads.com"
+msgstr "https://wpadvancedads.com"
+
 #: admin/views/group-options.php:16
 msgid "Random order"
 msgstr "Zufallsreihenfolge"
@@ -34,17 +42,9 @@ msgstr "Zeige Anzeigen in zufälliger Reihenfolge im Slider"
 msgid "Advanced Ads – Slider"
 msgstr "Advanced Ads – Slider"
 
-#. URI of the plugin
-msgid "https://wpadvancedads.com/add-ons/slider/"
-msgstr ""
-
 #. Author of the plugin
 msgid "Thomas Maier"
 msgstr "Thomas Maier"
-
-#. Author URI of the plugin
-msgid "https://wpadvancedads.com"
-msgstr ""
 
 #: admin/admin.php:54
 msgid ""
