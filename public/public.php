@@ -41,6 +41,7 @@ class Advanced_Ads_Slider {
 		if( ! defined( 'ADVANCED_ADS_SLIDER_USE_CDN') ) {
 		    wp_enqueue_script( 'unslider-js', AAS_BASE_URL . 'public/assets/js/unslider.min.js', array('jquery'), AAS_VERSION );
 		    wp_enqueue_style( 'unslider-css', AAS_BASE_URL . 'public/assets/css/unslider.css', array(), AAS_VERSION );
+                    wp_enqueue_style( 'slider-css', AAS_BASE_URL . 'public/assets/css/slider.css', array(), AAS_VERSION);
 		} else {
 		    // Using a CDN to prevend encoding issues in certain cases.
 		    wp_enqueue_script( 'unslider-js', 'https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js', array('jquery'), AAS_VERSION );
@@ -125,6 +126,15 @@ class Advanced_Ads_Slider {
 		array_push( $ad_content, '</ul></div>' );
 		//array_push( $ad_content, $css );
 		array_push( $ad_content, $script );
+                
+                ?>
+                <!-- display all ads after js is loaded to avoid all ads being displayed as a list-->
+                <script>
+                     window.onload = function(){
+                         jQuery("div.local-slider ul li").css("display", "block");
+                     };      
+                </script>
+                <?php
 
 		return $ad_content;
 	}
