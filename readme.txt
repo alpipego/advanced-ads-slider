@@ -35,6 +35,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* slides are hidden until the script is loaded to prevent output of all slides by default
+
 = 1.3 =
 
 * introduced ADVANCED_ADS_SLIDER_USE_CDN constant to use main unslider scripts from CDN
