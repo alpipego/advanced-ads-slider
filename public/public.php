@@ -46,6 +46,7 @@ class Advanced_Ads_Slider {
 		    wp_enqueue_script( 'unslider-js', 'https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js', array('jquery'), AAS_VERSION );
 		    wp_enqueue_style( 'unslider-css', 'https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/css/unslider.css', array(), AAS_VERSION );
 		}
+                wp_enqueue_style( 'slider-css', AAS_BASE_URL . 'public/assets/css/slider.css', array(), AAS_VERSION);
 		// scripts for swipe feature
 		if( ! defined( 'ADVANCED_ADS_NO_SWIPE') ) {
 		    wp_enqueue_script( 'unslider-move-js', AAS_BASE_URL . 'public/assets/js/jquery.event.move.js', array('jquery'), AAS_VERSION );
@@ -121,10 +122,19 @@ class Advanced_Ads_Slider {
 		
 		$script = '<script>jQuery(function() { var '. $slider_var .' = jQuery( ".' . $slider_options['init_class'] . '" ).unslider({ ' . $slider_options['settings'] . ' });'.
 		$slider_var . '.on("mouseover", function(){'.$slider_var.'.unslider("stop");}).on("mouseout", function() {'.$slider_var.'.unslider("start");});});</script>';
-		array_unshift( $ad_content, '<div id="'. $slider_options['slider_id'].'" class="'. $slider_options['init_class'] .' ' . $slider_options['prefix'] .'slider"><ul>' );
+		array_unshift( $ad_content, '<div id="'. $slider_options['slider_id'].'" class="'.'custom-slider '. $slider_options['init_class'] .' ' . $slider_options['prefix'] .'slider"><ul>' );
 		array_push( $ad_content, '</ul></div>' );
 		//array_push( $ad_content, $css );
 		array_push( $ad_content, $script );
+                
+                ?>
+                <!-- display all ads after js is loaded to avoid all ads being displayed as a list-->
+                <script>
+                     window.onload = function(){
+                         jQuery("div.custom-slider ul li").css("display", "block");
+                     };      
+                </script>
+                <?php
 
 		return $ad_content;
 	}
