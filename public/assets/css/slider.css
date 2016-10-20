@@ -1,4 +1,3 @@
-.widget .unslider li, .unslider li {margin: 0;padding: 0;border: 0;}
+.widget .unslider li, .unslider li {margin: 0;padding: 0;border: 0;clear: none;}
 .custom-slider>ul>li:not(:first-child) {display:none;}
 .custom-slider>ul{list-style: none;}
-
