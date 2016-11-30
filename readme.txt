@@ -35,6 +35,11 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* "fade" animation type is now working
+* minor css fix for some layouts
+
 = 1.3.1 =
 
 * slides are hidden until the script is loaded to prevent output of all slides by default
