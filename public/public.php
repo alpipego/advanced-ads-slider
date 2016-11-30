@@ -30,6 +30,8 @@ class Advanced_Ads_Slider {
 		// manipulate number of ads that should be displayed in a group
 		add_filter( 'advanced-ads-group-ad-count', array($this, 'adjust_ad_group_number'), 10, 2 );
 
+		// add slider markup to passive cache-busting.
+		add_filter( 'advanced-ads-pro-passive-cb-group-data', array( $this, 'add_slider_markup_passive' ), 10, 3 );
         }
 
 	/**
@@ -108,11 +110,28 @@ class Advanced_Ads_Slider {
 		    return $ad_content;
 		}
 
-		$slider_options = self::get_slider_options( $group );
+		$markup = $this->get_slider_markup( $group );
 
 		foreach( $ad_content as $_key => $_content ){
-		    $ad_content[$_key] = '<li>' . $_content . '</li>';
+		    $ad_content[$_key] = sprintf( $markup['each'], $_content );
 		}
+
+		$markup = $this->get_slider_markup( $group );
+		array_unshift( $ad_content, $markup['before'] );
+		array_push( $ad_content, $markup['after'] );
+
+		return $ad_content;
+	}
+
+	/**
+	 * Get markup to inject around each slide and around set of slides.
+	 *
+	 * @param arr $ad_content array with ad contents
+	 * @param obj $group Advanced_Ads_Group
+	 * @return arr
+	 */
+	public function get_slider_markup( Advanced_Ads_Group $group ) {
+		$slider_options = self::get_slider_options( $group );
 
 		/* custom css file was added with version 1.1. Deactivate the following lines if there are issues with your layout
 		 * $css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
@@ -121,22 +140,35 @@ class Advanced_Ads_Slider {
 		$slider_var = '$' . preg_replace( '/[^\da-z]/i', '', $slider_options['init_class'] );
 		
 		$script = '<script>jQuery(function() { var '. $slider_var .' = jQuery( ".' . $slider_options['init_class'] . '" ).unslider({ ' . $slider_options['settings'] . ' });'.
-		$slider_var . '.on("mouseover", function(){'.$slider_var.'.unslider("stop");}).on("mouseout", function() {'.$slider_var.'.unslider("start");});});</script>';
-		array_unshift( $ad_content, '<div id="'. $slider_options['slider_id'].'" class="'.'custom-slider '. $slider_options['init_class'] .' ' . $slider_options['prefix'] .'slider"><ul>' );
-		array_push( $ad_content, '</ul></div>' );
-		//array_push( $ad_content, $css );
-		array_push( $ad_content, $script );
-                
-                ?>
-                <!-- display all ads after js is loaded to avoid all ads being displayed as a list-->
-                <script>
-                     window.onload = function(){
-                         jQuery("div.custom-slider ul li").css("display", "block");
-                     };      
-                </script>
-                <?php
+		$slider_var . '.on("mouseover", function(){'.$slider_var.'.unslider("stop");}).on("mouseout", function() {'.$slider_var.'.unslider("start");});});</script>';	
 
-		return $ad_content;
+		$onload = '<!-- display all ads after js is loaded to avoid all ads being displayed as a list-->'
+		. '<script>window.onload = function(){ jQuery( "div.custom-slider ul li" ).css( "display", "block" ); }; </script>';
+
+		$result = array(
+			'before' => '<div id="'. $slider_options['slider_id'].'" class="'.'custom-slider '. $slider_options['init_class'] .' ' . $slider_options['prefix'] .'slider"><ul>',
+			'after' => '</ul></div>' . $script . $onload,
+			'each' => '<li>%s</li>',
+			'min_ads' => 2,
+		);
+		//$result['after'] .= $css;
+
+		return $result;
+	}
+
+	/**
+	 * Add slider markup to passive cache-busting.
+	 *
+	 * @param arr $group_data
+	 * @param obj $group Advanced_Ads_Group
+	 * @param string $element_id
+	 */
+	public function add_slider_markup_passive( $group_data, Advanced_Ads_Group $group, $element_id ) {
+		if ( $element_id && 'slider' === $group->type  ) {
+			$group_data['group_wrap'][] = $this->get_slider_markup( $group );
+		}
+
+		return $group_data;
 	}
 
     /**
