@@ -139,15 +139,16 @@ class Advanced_Ads_Slider {
 			. ".advads-slider ul li { }</style>";*/
 		$slider_var = '$' . preg_replace( '/[^\da-z]/i', '', $slider_options['init_class'] );
 		
-		$script = '<script>jQuery(function() { var '. $slider_var .' = jQuery( ".' . $slider_options['init_class'] . '" ).unslider({ ' . $slider_options['settings'] . ' });'.
-		$slider_var . '.on("mouseover", function(){'.$slider_var.'.unslider("stop");}).on("mouseout", function() {'.$slider_var.'.unslider("start");});});</script>';	
-
-		$onload = '<!-- display all ads after js is loaded to avoid all ads being displayed as a list-->'
-		. '<script>window.onload = function(){ jQuery( "div.custom-slider ul li" ).css( "display", "block" ); }; </script>';
+		$script = '<script>jQuery(function() {'
+		. 'var ' . $slider_var . ' = jQuery( ".' . $slider_options['init_class'] . '" );'
+		// display all ads after slider is loaded to avoid all ads being displayed as a list'
+		. $slider_var . '.on( "unslider.ready", function() { jQuery( "div.custom-slider ul li" ).css( "display", "block" ); });'
+		. $slider_var . '.unslider({ ' . $slider_options['settings'] . ' });'
+		. $slider_var . '.on("mouseover", function(){'.$slider_var.'.unslider("stop");}).on("mouseout", function() {'.$slider_var.'.unslider("start");});});</script>';	
 
 		$result = array(
 			'before' => '<div id="'. $slider_options['slider_id'].'" class="'.'custom-slider '. $slider_options['init_class'] .' ' . $slider_options['prefix'] .'slider"><ul>',
-			'after' => '</ul></div>' . $script . $onload,
+			'after' => '</ul></div>' . $script,
 			'each' => '<li>%s</li>',
 			'min_ads' => 2,
 		);
