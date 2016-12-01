@@ -3,7 +3,7 @@ Contributors: webzunft
 Tags: ads, ad, banner, adverts, advertisement, slider
 Requires at least: 3.5, Advanced Ads 1.7.3
 Tested up to: 4.6.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 
 Create a slider from your ads.
 Add-on for https://wpadvancedads.com
@@ -35,7 +35,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
-= untagged =
+= 1.3.2 =
 
 * "fade" animation type is now working
 * minor css fix for some layouts
