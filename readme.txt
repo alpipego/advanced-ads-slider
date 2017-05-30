@@ -35,6 +35,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* converted group options to new option format of Advanced Ads 1.7.26
+
 = 1.3.2 =
 
 * "fade" animation type is now working

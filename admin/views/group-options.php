@@ -1,7 +1,4 @@
 <div class="advads-group-slider-options"
-    <?php if( 'slider' !== $group->type ) : ?>
-        style="display: none;"
-    <?php endif; ?>>
     <div>
         <label>
             <strong>

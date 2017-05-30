@@ -74,8 +74,34 @@ class Advanced_Ads_Slider_Admin {
 
 		$delay = isset( $group->options['slider']['delay'] ) ? absint( $group->options['slider']['delay'] ) : 2000;
 		$random = isset( $group->options['slider']['random'] ) ? $group->options['slider']['random'] : false;
+		
+		if( ! class_exists( 'Advanced_Ads_Admin_Options' ) ){
+			echo 'Please update to Advanced Ads 1.7.26';
+			return;
+		}
+		
+		// delay
+		ob_start();
+		?><input type="number" name="advads-groups[<?php echo $group->id; ?>][options][slider][delay]" value="<?php echo $delay; ?>"/><?php
+		$option_content = ob_get_clean();
 
-		include AAS_BASE_PATH . 'admin/views/group-options.php';
+		Advanced_Ads_Admin_Options::render_option( 
+			'group-slider-delay advads-group-type-slider', 
+			__( 'Slide delay', 'slider-ads' ),
+			$option_content,
+			__('Pause for each ad slide in milliseconds', 'slider-ads' ) );
+		
+		// random
+		ob_start();
+		?><input type="checkbox" name="advads-groups[<?php echo $group->id; ?>][options][slider][random]"<?php if ($random) : ?> checked = "checked" <?php endif; ?>/><?php
+		$option_content = ob_get_clean();
+
+		Advanced_Ads_Admin_Options::render_option( 
+			'group-slider-random advads-group-type-slider', 
+			__('Random order', 'slider-ads' ),
+			$option_content,
+			__('Display ads in the slider in a random order', 'slider-ads' ) );
+
 	}
 
 	/**
