@@ -21,7 +21,7 @@ merchantability or fitness for a specific purpose.
 
 This plugins adds a new ad group whose frontend output happens as a slider with rotating banners.
 
-The slider is built on http://unslider.com/.
+The slider is built on http://idiot.github.io/unslider/.
 
 Other scripts used:
 
