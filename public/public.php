@@ -185,6 +185,7 @@ class Advanced_Ads_Slider {
             $settings['autoplay'] = 'true';
             $settings['nav'] = 'false';
             $settings['arrows'] = 'false';
+            $settings['infinite'] = 'true';
         }
 
         $settings = apply_filters( 'advanced-ads-slider-settings', $settings );
