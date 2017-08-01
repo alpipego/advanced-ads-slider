@@ -37,6 +37,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 = untagged =
 
+* changed loop animation to infinite
 * removed old overview widget logic
 * converted group options to new option format of Advanced Ads 1.7.26
 
