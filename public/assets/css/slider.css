@@ -6,6 +6,10 @@
     clear: none !important;
 }
 
+ul.unslider-wrap { 
+    padding: 0 !important; 
+}
+
 .custom-slider>ul>li:not(:first-child) {
     display: none;
 }
