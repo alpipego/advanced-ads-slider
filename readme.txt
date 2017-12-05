@@ -35,6 +35,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* made compatible without "Safe mode" in WP Rocket
+
 = 1.4.1 =
 
 * added more rules to prevent themes from overriding slider CSS

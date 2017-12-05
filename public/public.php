@@ -139,7 +139,7 @@ class Advanced_Ads_Slider {
 			. ".advads-slider ul li { }</style>";*/
 		$slider_var = '$' . preg_replace( '/[^\da-z]/i', '', $slider_options['init_class'] );
 		
-		$script = '<script>jQuery(function() {'
+		$script = '<script>( window.advanced_ads_ready || jQuery( document ).ready ).call( null, function() {'
 		. 'var ' . $slider_var . ' = jQuery( ".' . $slider_options['init_class'] . '" );'
 		// display all ads after slider is loaded to avoid all ads being displayed as a list'
 		. $slider_var . '.on( "unslider.ready", function() { jQuery( "div.custom-slider ul li" ).css( "display", "block" ); });'
