@@ -37,7 +37,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 = untagged =
 
-* updated unslider script to 2.0.3
+* updated scripts to latest versions
 
 = 1.4.2 =
 
