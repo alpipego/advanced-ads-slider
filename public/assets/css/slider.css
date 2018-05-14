@@ -25,3 +25,7 @@ ul.unslider-wrap {
     margin-right: -100% !important;
     width: 100%;
 }
+
+.unslider-horizontal {
+    direction: ltr;
+}

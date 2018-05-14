@@ -35,6 +35,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* added CSS fix for rtl pages
+
 = 1.4.3 =
 
 * updated scripts to latest versions
