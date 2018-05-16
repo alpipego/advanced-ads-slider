@@ -6,6 +6,10 @@
     clear: none !important;
 }
 
+.unslider img {
+    position: relative !important;
+}
+
 ul.unslider-wrap { 
     padding: 0 !important; 
 }
