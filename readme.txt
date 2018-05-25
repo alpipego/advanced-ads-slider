@@ -37,6 +37,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 = untagged =
 
+* added fallback to random ad group on AMP pages
 * added CSS fix for rtl pages
 * added CSS fix for positioning img tags
 

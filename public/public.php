@@ -70,7 +70,9 @@ class Advanced_Ads_Slider {
 	public function output_ad_ids( $ordered_ad_ids, $type, $ads, $weights, Advanced_Ads_Group $group ){
 	    // return order by weights if this is a slider
 	    if( $type === 'slider' ){
-			if(isset($group->options['slider']['random'])){
+			// shuffle if this was set or we are on AMP
+			if( isset($group->options['slider']['random'] )
+				|| ( function_exists( 'advads_is_amp' ) && advads_is_amp() ) ) {
 				return $group->shuffle_ads($ads, $weights);
 			} else {
 				return array_keys($weights);
@@ -90,7 +92,9 @@ class Advanced_Ads_Slider {
 	 */
 	public function adjust_ad_group_number( $ad_count = 0, $group ){
 
-	    if( $group->type === 'slider' ){
+	    // show all ads for slider, but only, if this is not an AMP page
+	    if( $group->type === 'slider' && 
+		    ( ! function_exists( 'advads_is_amp' ) || ! advads_is_amp() ) ){
 		    return 'all';
 	    }
 
@@ -106,6 +110,11 @@ class Advanced_Ads_Slider {
 	 */
 	public function output_slider_markup( array $ad_content, Advanced_Ads_Group $group ){
 
+		// return if we are on AMP
+		if( function_exists( 'advads_is_amp' ) && advads_is_amp() ){
+		    return $ad_content;
+		}
+	    
 		if( count( $ad_content ) <= 1 || 'slider' !== $group->type ) {
 		    return $ad_content;
 		}
