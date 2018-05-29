@@ -1,9 +1,9 @@
 === Advanced Ads Slider ===
 Contributors: webzunft
 Tags: ads, ad, banner, adverts, advertisement, slider
-Requires at least: 3.5, Advanced Ads 1.8.18, Advanced Ads Pro 2.0.3
+Requires at least: 3.5, Advanced Ads 1.8.29, Advanced Ads Pro 2.0.3
 Tested up to: 4.9
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 
 Create a slider from your ads.
 Add-on for https://wpadvancedads.com
@@ -35,7 +35,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
-= untagged =
+= 1.4.4 =
 
 * added fallback to random ad group on AMP pages
 * added CSS fix for rtl pages
