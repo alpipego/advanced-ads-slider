@@ -35,6 +35,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* Added Italian translation 
+
 = 1.4.4 =
 
 * added fallback to random ad group on AMP pages
