@@ -37,6 +37,7 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 = untagged =
 
+* updated message that shows when Advanced Ads basic plugin is missing
 * added Italian translation
 * updated Spanish translation
 * updated French translation
