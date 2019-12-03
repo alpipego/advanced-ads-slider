@@ -6,7 +6,7 @@
  * Plugin URI:        https://wpadvancedads.com/add-ons/slider/
  * Description:       Create a slider from your ads.
  * Version:           1.4.6
- * Author:            Thomas Maier
+ * Author:            Advanced Ads GmbH
  * Author URI:        https://wpadvancedads.com
  * Text Domain:       slider-ads
  * Domain Path:       /languages
