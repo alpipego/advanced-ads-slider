@@ -1,10 +1,4 @@
-
-(function() {
-	if ( ! window.Symbol ) {
-		return;
-	}
-
-	// DOM.event.move
+// DOM.event.move
 //
 // 2.0.0
 //
@@ -588,6 +582,3 @@
 		add: add
 	};
 });
-
-
-})()
