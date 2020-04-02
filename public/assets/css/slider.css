@@ -4,6 +4,10 @@
     padding: 0 !important;
     border: 0 !important;
     clear: none !important;
+	/* Prevent "[Intervention] Unable to preventDefault inside passive event listener due to target being treated as passive"
+	 * error in Chrome mobile emulator.
+	 */
+	touch-action: none;
 }
 
 .unslider img {
