@@ -33,6 +33,10 @@ You can use Advanced Ads along any other ad management plugin and don’t need t
 
 == Changelog ==
 
+= untagged =
+
+* made sliders work in Internet Explorer together with Autoptimize plugin
+
 = 1.4.6 =
 
 * downgraded unslider script to make stop on mouseover work again

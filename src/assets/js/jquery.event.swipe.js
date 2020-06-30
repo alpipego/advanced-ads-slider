@@ -1,10 +1,4 @@
-
-(function() {
-	if ( ! window.Symbol ) {
-		return;
-	}
-
-	// jQuery.event.swipe
+// jQuery.event.swipe
 // 0.5
 // Stephen Band
 
@@ -136,6 +130,3 @@
 		settings: settings
 	};
 });
-
-
-})()
