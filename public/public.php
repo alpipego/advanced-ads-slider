@@ -1,60 +1,49 @@
 <?php
 
+/**
+ * Class Advanced_Ads_Slider
+ */
 class Advanced_Ads_Slider {
+	/**
+	 * Initialize the plugin and styles.
+	 */
+	public function __construct() {
 
-        /**
-         * holds plugin base class
-         *
-         * @var Advanced_Ads_Slider_Plugin
-         * @since 1.0.0
-         */
-        protected $plugin;
-
-        /**
-         * Initialize the plugin
-         * and styles.
-         *
-         * @since     1.0.0
-         */
-        public function __construct() {
-
-                $this->plugin = Advanced_Ads_Slider_Plugin::get_instance();
-
-                // add js file to header
-                add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
+		// add js file to header
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
 
 		add_filter( 'advanced-ads-group-output-ad-ids', array( $this, 'output_ad_ids' ), 10, 5 );
 
-		add_filter( 'advanced-ads-group-output-array', array( $this, 'output_slider_markup'), 10, 2 );
+		add_filter( 'advanced-ads-group-output-array', array( $this, 'output_slider_markup' ), 10, 2 );
 
 		// manipulate number of ads that should be displayed in a group
-		add_filter( 'advanced-ads-group-ad-count', array($this, 'adjust_ad_group_number'), 10, 2 );
+		add_filter( 'advanced-ads-group-ad-count', array( $this, 'adjust_ad_group_number' ), 10, 2 );
 
 		// add slider markup to passive cache-busting.
 		add_filter( 'advanced-ads-pro-passive-cb-group-data', array( $this, 'add_slider_markup_passive' ), 10, 3 );
-        }
+	}
 
 	/**
-	 * append js file in footer
-	 *
-	 * @since 1.0.0
+	 * Enqueue JS in footer.
 	 */
-	public function register_scripts(){
-		if( ! defined( 'ADVANCED_ADS_SLIDER_USE_CDN') ) {
-		    wp_enqueue_script( 'unslider-js', AAS_BASE_URL . 'public/assets/js/unslider.min.js', array('jquery'), AAS_VERSION );
-		    wp_enqueue_style( 'unslider-css', AAS_BASE_URL . 'public/assets/css/unslider.css', array(), AAS_VERSION );
-		} else {
-		    // Using a CDN to prevend encoding issues in certain cases.
-		    wp_enqueue_script( 'unslider-js', 'https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js', array('jquery'), AAS_VERSION );
-		    wp_enqueue_style( 'unslider-css', 'https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/css/unslider.css', array(), AAS_VERSION );
+	public function register_scripts() {
+		$js_src  = AAS_BASE_URL . 'public/assets/js/unslider.min.js';
+		$css_src = AAS_BASE_URL . 'public/assets/css/unslider.css';
+		// Using a CDN to prevend encoding issues in certain cases.
+		if ( defined( 'ADVANCED_ADS_SLIDER_USE_CDN' ) && ADVANCED_ADS_SLIDER_USE_CDN ) {
+			$js_src  = 'https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js';
+			$css_src = 'https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/css/unslider.css';
 		}
-                wp_enqueue_style( 'slider-css', AAS_BASE_URL . 'public/assets/css/slider.css', array(), AAS_VERSION);
+
+		wp_enqueue_script( 'unslider-js', $js_src, array( 'jquery', ADVADS_SLUG . '-advanced-js' ), AAS_VERSION, true );
+		wp_enqueue_style( 'unslider-css', $css_src, array(), AAS_VERSION );
+		wp_enqueue_style( 'slider-css', AAS_BASE_URL . 'public/assets/css/slider.css', array(), AAS_VERSION );
+
 		// scripts for swipe feature
-		if( ! defined( 'ADVANCED_ADS_NO_SWIPE') ) {
-		    wp_enqueue_script( 'unslider-move-js', AAS_BASE_URL . 'public/assets/js/jquery.event.move.js', array('jquery'), AAS_VERSION );
-		    wp_enqueue_script( 'unslider-swipe-js', AAS_BASE_URL . 'public/assets/js/jquery.event.swipe.js', array('jquery'), AAS_VERSION );
+		if ( ! defined( 'ADVANCED_ADS_NO_SWIPE' ) ) {
+			wp_enqueue_script( 'unslider-move-js', AAS_BASE_URL . 'public/assets/js/jquery.event.move.js', array( 'jquery', 'unslider-js' ), AAS_VERSION, true );
+			wp_enqueue_script( 'unslider-swipe-js', AAS_BASE_URL . 'public/assets/js/jquery.event.swipe.js', array( 'jquery', 'unslider-js' ), AAS_VERSION, true );
 		}
-		
 	}
 	
 	/**
@@ -121,11 +110,16 @@ class Advanced_Ads_Slider {
 
 		$markup = $this->get_slider_markup( $group );
 
-		foreach( $ad_content as $_key => $_content ){
-		    $ad_content[$_key] = sprintf( $markup['each'], $_content );
+		foreach ( $ad_content as $index => $content ) {
+			// this ad is encoded
+			if ( strpos( $content, 'data-tcf="waiting-for-consent"' ) ) {
+				$ad_content[ $index ] = sprintf( $markup['encoded'], $content );
+
+				continue;
+			}
+			$ad_content[ $index ] = sprintf( $markup['decoded'], $content );
 		}
 
-		$markup = $this->get_slider_markup( $group );
 		array_unshift( $ad_content, $markup['before'] );
 		array_push( $ad_content, $markup['after'] );
 
@@ -135,35 +129,73 @@ class Advanced_Ads_Slider {
 	/**
 	 * Get markup to inject around each slide and around set of slides.
 	 *
-	 * @param arr $ad_content array with ad contents
-	 * @param obj $group Advanced_Ads_Group
-	 * @return arr
+	 * @param Advanced_Ads_Group $group The ad group to use for slider.
+	 *
+	 * @return array
 	 */
 	public function get_slider_markup( Advanced_Ads_Group $group ) {
+		static $count = 0;
+
 		$slider_options = self::get_slider_options( $group );
+		$script         = <<<'PRIVACY'
+<script>
+document.addEventListener('advanced_ads_privacy', function (event) {
+	if (event.detail.previousState !== 'unknown') {
+		return;
+	}
+	if (event.detail.state === 'accepted' || event.detail.state === 'not_needed') {
+		document.querySelectorAll('.custom-slider li.encoded').forEach(function(el) {
+			var waitingForConsent = el.querySelector('script[data-tcf="waiting-for-consent"]');
+			if (waitingForConsent !== null) {
+				advads.privacy.decode_ad(waitingForConsent);
+			}
+			el.classList.remove('encoded');
+		});
+	}
+	
+	var %1$s = jQuery('#%2$s'),
+		%3$s = %1$s.find('%4$s');
 
-		/* custom css file was added with version 1.1. Deactivate the following lines if there are issues with your layout
-		 * $css = "<style>.advads-slider { position: relative; width: 100% !important; overflow: hidden; } "
-			. ".advads-slider ul, .advads-slider li { list-style: none; margin: 0 !important; padding: 0 !important; } "
-			. ".advads-slider ul li { }</style>";*/
+	if (%3$s.length < 2) {
+		return;
+	}
+
+	%1$s.on('unslider.ready', function() {
+			%3$s.css('display', 'block');
+		}).on('mouseover', function() {
+			%1$s.unslider('stop');
+		}).on('mouseout', function() {
+			%1$s.unslider('start');
+		});
+
+	%1$s.unslider({%5$s, selectors: {container: "ul:first", slides: "%4$s"}});
+});
+</script>
+PRIVACY;
+
 		$slider_var = '$' . preg_replace( '/[^\da-z]/i', '', $slider_options['init_class'] );
-		
-		$script = '<script>( window.advanced_ads_ready || jQuery( document ).ready ).call( null, function() {'
-		. 'var ' . $slider_var . ' = jQuery( ".' . $slider_options['init_class'] . '" );'
-		// display all ads after slider is loaded to avoid all ads being displayed as a list'
-		. $slider_var . '.on( "unslider.ready", function() { jQuery( "div.custom-slider ul li" ).css( "display", "block" ); });'
-		. $slider_var . '.unslider({ ' . $slider_options['settings'] . ' });'
-		. $slider_var . '.on("mouseover", function(){'.$slider_var.'.unslider("stop");}).on("mouseout", function() {'.$slider_var.'.unslider("start");});});</script>';	
+		$slider_id  = $slider_options['slider_id'] . ( ++ $count > 1 ? '-' . $count : '' );
+		$script     = sprintf(
+			$script,
+			$slider_var,
+			$slider_id,
+			$slider_var . '_slides',
+			'li:not(.encoded)',
+			$slider_options['settings']
+		);
 
-		$result = array(
-			'before' => '<div id="'. $slider_options['slider_id'].'" class="'.'custom-slider '. $slider_options['init_class'] .' ' . $slider_options['prefix'] .'slider"><ul>',
-			'after' => '</ul></div>' . $script,
-			'each' => '<li>%s</li>',
+		return array(
+			'before'  => sprintf(
+				'<div id="%1$s" class="custom-slider %2$s %3$sslider"><ul>',
+				$slider_id,
+				$slider_options['init_class'],
+				$slider_options['prefix']
+			),
+			'after'   => '</ul></div>' . $script,
+			'decoded' => '<li>%s</li>',
+			'encoded' => '<li class="encoded">%s</li>',
 			'min_ads' => 2,
 		);
-		//$result['after'] .= $css;
-
-		return $result;
 	}
 
 	/**
